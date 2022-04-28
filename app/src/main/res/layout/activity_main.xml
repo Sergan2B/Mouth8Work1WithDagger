@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_delete_shop_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:text="@string/remove"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_add_shop_item" />
+
+    <Button
+        android:id="@+id/btn_add_shop_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="70dp"
+        android:text="@string/add"
+        app:layout_constraintEnd_toStartOf="@+id/btn_delete_shop_item"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_get_shop_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/get"
+        app:layout_constraintEnd_toEndOf="@+id/btn_delete_shop_item"
+        app:layout_constraintStart_toStartOf="@+id/btn_delete_shop_item"
+        app:layout_constraintTop_toTopOf="@+id/btn_edit_shop_item" />
+
+    <Button
+        android:id="@+id/btn_get_shop_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/get_all"
+        app:layout_constraintEnd_toEndOf="@+id/btn_get_shop_item"
+        app:layout_constraintStart_toStartOf="@+id/btn_edit_shop_item"
+        app:layout_constraintTop_toBottomOf="@+id/btn_get_shop_item" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="90dp"
+        android:autofillHints="name"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/btn_edit_shop_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/edit"
+        app:layout_constraintEnd_toEndOf="@+id/btn_add_shop_item"
+        app:layout_constraintStart_toStartOf="@+id/btn_add_shop_item"
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_shop_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

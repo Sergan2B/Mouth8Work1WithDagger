@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mouth8Work1</string>
+    <string name="name">Name</string>
+    <string name="get_all">Получить все</string>
+    <string name="edit">Редактировать</string>
+    <string name="get">Получить</string>
+    <string name="add">Добавить</string>
+    <string name="remove">Удалить</string>
+</resources>
