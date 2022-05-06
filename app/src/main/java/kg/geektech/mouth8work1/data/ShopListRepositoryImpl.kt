@@ -23,7 +23,7 @@ class ShopListRepositoryImpl : ShopListRepository {
     }
 
     override fun editShopItem(shopItem: ShopItem) {
-
+        shopItem.enabled = !shopItem.enabled
     }
 
     override fun getShopItem(shopItemId: Int): ShopItem = shopList[shopItemId]

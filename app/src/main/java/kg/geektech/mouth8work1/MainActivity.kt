@@ -21,34 +21,47 @@ class MainActivity : AppCompatActivity() {
         //enit & nothing
         initViewModel()
         initObservers()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        //get shopList для получения
+        binding.btnGetShopList.setOnClickListener {
+            viewModel.getShopList()
+        }
+        //add shopItem
+        binding.btnAddShopItem.setOnClickListener {
+            if (binding.editText.text.toString().isNotEmpty())
+            viewModel.addShopItem(ShopItem(binding.editText.text.toString(), 2, true))
+            else Toast.makeText(applicationContext, "Заполните текст", Toast.LENGTH_LONG).show()
+
+        }
+        //edit ShopItem
+        binding.btnEditShopItem.setOnClickListener {
+            viewModel.editShopItem(ShopItem(binding.editText.text.toString(), 2, true))
+        }
+        //delete ShopItem
+        binding.btnDeleteShopItem.setOnClickListener {
+            if (binding.editText.text.toString().isNotEmpty())
+            viewModel.deleteShopItem(ShopItem(binding.editText.text.toString(), 2, true))
+            else Toast.makeText(applicationContext, "Заполните текст индексом 22", Toast.LENGTH_LONG).show()
+
+        }
+        //get shopItem
+        binding.btnGetShopItem.setOnClickListener {
+            if (binding.editText.text.toString().isNotEmpty())
+                viewModel.getShopItem(binding.editText.text.toString().toInt())
+            else Toast.makeText(applicationContext, "Заполните текст индексом", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun initObservers() {
-        binding.btnGetShopList.setOnClickListener {
-            viewModel.getShopList()
-            //get shopList для получения
-        }
         viewModel.shopListLD.observe(this) {
             Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
         }
         viewModel.shopListLDItem.observe(this) {
             Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
         }
-        //add shopItem
-        binding.btnAddShopItem.setOnClickListener {
-            viewModel.addShopItem(ShopItem(binding.editText.text.toString(), 2, true))
-        }
-        //delete ShopItem
-        binding.btnDeleteShopItem.setOnClickListener {
-            viewModel.deleteShopItem(ShopItem(binding.editText.text.toString(), 2, true))
-        }
-        //get shopItem
-        binding.btnGetShopItem.setOnClickListener {
-            if (binding.editText.text.toString().toInt().equals(Int))
-                viewModel.getShopItem(binding.editText.text.toString().toInt())
-            else Toast.makeText(applicationContext, "Заполните текст индексом", Toast.LENGTH_LONG).show()
-        }
-        loadText()
     }
 
     private fun saveText() {
@@ -66,6 +79,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        loadText()
     }
 
     override fun onDestroy() {

@@ -12,6 +12,7 @@ class MainViewModel : ViewModel() {
     private val addShopItemUseCase = AddShopItemUseCase(repositoryImpl)
     private val deleteShopItemUseCase = DeleteShopItemUseCase(repositoryImpl)
     private val getShopListUseCase = GetShopListUseCase(repositoryImpl)
+    private val editShopItemUseCase = EditShopItemUseCase(repositoryImpl)
     private val getShopItemUseCase = GetShopItemUseCase(repositoryImpl)
     val shopListLD = MutableLiveData<List<ShopItem>>()
     val shopListLDItem = MutableLiveData<ShopItem>()
@@ -29,7 +30,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun editShopItem(shopItem: ShopItem) {
-
+        editShopItemUseCase.editShopItem(shopItem)
     }
 
     fun getShopItem(shopItem: Int) {
