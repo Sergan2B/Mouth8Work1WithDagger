@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kg.geektech.mouth8work1.R
 import kg.geektech.mouth8work1.core.extentions.showToastShort
@@ -40,7 +42,7 @@ class TaskActivity : AppCompatActivity(R.layout.activity_task) {
 
     private fun initObservers() {
         viewModel.shopListLD.observe(this) {
-            adapter.list = it
+            adapter.submitList(it)
         }
     }
 
@@ -61,6 +63,27 @@ class TaskActivity : AppCompatActivity(R.layout.activity_task) {
     private fun initRecyclerView() {
         adapter = ShopItemAdapter()
         binding.taskRecycler.adapter = adapter
+        setUpSwipeListener()
+    }
+
+    private fun setUpSwipeListener() {
+        val callback = object :
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val item = adapter.currentList[viewHolder.absoluteAdapterPosition]
+                viewModel.deleteShopItem(item)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(callback)
+        itemTouchHelper.attachToRecyclerView(binding.taskRecycler)
     }
 
     private fun initViewModel() {
