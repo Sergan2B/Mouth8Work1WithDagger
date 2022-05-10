@@ -1,4 +1,4 @@
-package kg.geektech.mouth8work1.domain
+package kg.geektech.mouth8work1.domain.shopItemModels
 
 data class ShopItem(
     val name: String,

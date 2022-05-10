@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mouth8Work1/app/src/main/res/drawable/ic_add.xml" value="0.134" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mouth8Work1/app/src/main/res/layout/activity_main.xml" value="0.2234375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mouth8Work1/app/src/main/res/layout/activity_second_task.xml" value="0.2234375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mouth8Work1/app/src/main/res/layout/activity_task.xml" value="0.2234375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mouth8Work1/app/src/main/res/layout/item_task_desable.xml" value="0.2234375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mouth8Work1/app/src/main/res/layout/item_task_recycler.xml" value="0.2234375" />
       </map>
     </option>
   </component>

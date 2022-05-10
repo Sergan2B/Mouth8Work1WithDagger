@@ -1,9 +1,9 @@
-package kg.geektech.mouth8work1.presentation
+package kg.geektech.mouth8work1.presentation.mainActivity
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kg.geektech.mouth8work1.data.ShopListRepositoryImpl
-import kg.geektech.mouth8work1.domain.*
+import kg.geektech.mouth8work1.domain.shopItemModels.ShopItem
+import kg.geektech.mouth8work1.domain.shopItemUseCase.*
 
 class MainViewModel : ViewModel() {
 
@@ -14,12 +14,7 @@ class MainViewModel : ViewModel() {
     private val getShopListUseCase = GetShopListUseCase(repositoryImpl)
     private val editShopItemUseCase = EditShopItemUseCase(repositoryImpl)
     private val getShopItemUseCase = GetShopItemUseCase(repositoryImpl)
-    val shopListLD = MutableLiveData<List<ShopItem>>()
-    val shopListLDItem = MutableLiveData<ShopItem>()
-
-    fun getShopList() {
-        shopListLD.value = getShopListUseCase.getShopList()
-    }
+    val shopListLD = getShopListUseCase.getShopList()
 
     fun addShopItem(shopItem: ShopItem) {
         addShopItemUseCase.addShopItem(shopItem)
@@ -30,10 +25,17 @@ class MainViewModel : ViewModel() {
     }
 
     fun editShopItem(shopItem: ShopItem) {
+        /*val newItem = ShopItem(
+            shopItem.name,
+            shopItem.count,
+            !shopItem.enabled
+        )*/
+        with(shopItem) { copy(enabled = !enabled) }
         editShopItemUseCase.editShopItem(shopItem)
     }
 
-    fun getShopItem(shopItem: Int) {
-        shopListLDItem.value = getShopItemUseCase.getShopItem(shopItem)
+    /////ТУТ ОШИБКА. lj 10/05/2022. Не помню была тут ошибка или нет после 10.05.2022
+    fun getShopItem(shopItem: Int): ShopItem {
+        return getShopItemUseCase.getShopItem(shopItem)
     }
 }
