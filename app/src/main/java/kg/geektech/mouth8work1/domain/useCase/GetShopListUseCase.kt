@@ -1,8 +1,8 @@
-package kg.geektech.mouth8work1.domain.shopItemUseCase
+package kg.geektech.mouth8work1.domain.useCase
 
 import androidx.lifecycle.LiveData
-import kg.geektech.mouth8work1.domain.shopItemModels.ShopItem
-import kg.geektech.mouth8work1.domain.shopInterface.ShopListRepository
+import kg.geektech.mouth8work1.domain.model.ShopItem
+import kg.geektech.mouth8work1.domain.interfaceShopItem.ShopListRepository
 
 class GetShopListUseCase(private val shopListRepository: ShopListRepository) {
 

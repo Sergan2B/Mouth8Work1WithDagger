@@ -1,4 +1,4 @@
-package kg.geektech.mouth8work1.presentation.mainActivity
+package kg.geektech.mouth8work1.presentation.main
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kg.geektech.mouth8work1.R
 import kg.geektech.mouth8work1.core.extentions.showToastShort
-import kg.geektech.mouth8work1.domain.shopItemModels.ShopItem
+import kg.geektech.mouth8work1.domain.model.ShopItem
 import kg.geektech.mouth8work1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {

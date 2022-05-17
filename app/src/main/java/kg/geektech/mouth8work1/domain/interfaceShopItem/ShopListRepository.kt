@@ -1,7 +1,7 @@
-package kg.geektech.mouth8work1.domain.shopInterface
+package kg.geektech.mouth8work1.domain.interfaceShopItem
 
 import androidx.lifecycle.LiveData
-import kg.geektech.mouth8work1.domain.shopItemModels.ShopItem
+import kg.geektech.mouth8work1.domain.model.ShopItem
 
 interface ShopListRepository {
     fun addShopItem(shopItem: ShopItem)

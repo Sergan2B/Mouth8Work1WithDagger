@@ -1,11 +1,10 @@
-package kg.geektech.mouth8work1.presentation.secondTaskActivity
+package kg.geektech.mouth8work1.presentation.task
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kg.geektech.mouth8work1.R
 import kg.geektech.mouth8work1.databinding.ActivitySecondTaskBinding
-import kg.geektech.mouth8work1.presentation.taskActivity.TaskActivity
 
 class SecondTaskActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySecondTaskBinding

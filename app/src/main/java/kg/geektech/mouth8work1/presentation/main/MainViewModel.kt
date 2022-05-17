@@ -1,9 +1,9 @@
-package kg.geektech.mouth8work1.presentation.mainActivity
+package kg.geektech.mouth8work1.presentation.main
 
 import androidx.lifecycle.ViewModel
-import kg.geektech.mouth8work1.data.ShopListRepositoryImpl
-import kg.geektech.mouth8work1.domain.shopItemModels.ShopItem
-import kg.geektech.mouth8work1.domain.shopItemUseCase.*
+import kg.geektech.mouth8work1.data.repository.ShopListRepositoryImpl
+import kg.geektech.mouth8work1.domain.model.ShopItem
+import kg.geektech.mouth8work1.domain.useCase.*
 
 class MainViewModel : ViewModel() {
 
@@ -25,16 +25,10 @@ class MainViewModel : ViewModel() {
     }
 
     fun editShopItem(shopItem: ShopItem) {
-        /*val newItem = ShopItem(
-            shopItem.name,
-            shopItem.count,
-            !shopItem.enabled
-        )*/
-        with(shopItem) { copy(enabled = !enabled) }
-        editShopItemUseCase.editShopItem(shopItem)
+        val newItem = with(shopItem) { copy(enabled = !enabled) }
+        editShopItemUseCase.editShopItem(newItem)
     }
 
-    /////ТУТ ОШИБКА. lj 10/05/2022. Не помню была тут ошибка или нет после 10.05.2022
     fun getShopItem(shopItem: Int): ShopItem {
         return getShopItemUseCase.getShopItem(shopItem)
     }

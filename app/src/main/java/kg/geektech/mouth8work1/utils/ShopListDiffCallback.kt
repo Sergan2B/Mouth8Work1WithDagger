@@ -1,7 +1,7 @@
 package kg.geektech.mouth8work1.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import kg.geektech.mouth8work1.domain.shopItemModels.ShopItem
+import kg.geektech.mouth8work1.domain.model.ShopItem
 
 class ShopListDiffCallback(
     private val oldList: List<ShopItem>,
