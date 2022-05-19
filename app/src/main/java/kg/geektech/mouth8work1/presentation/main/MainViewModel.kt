@@ -1,9 +1,12 @@
 package kg.geektech.mouth8work1.presentation.main
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kg.geektech.mouth8work1.data.repository.ShopListRepositoryImpl
 import kg.geektech.mouth8work1.domain.model.ShopItem
 import kg.geektech.mouth8work1.domain.useCase.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
@@ -17,19 +20,30 @@ class MainViewModel : ViewModel() {
     val shopListLD = getShopListUseCase.getShopList()
 
     fun addShopItem(shopItem: ShopItem) {
-        addShopItemUseCase.addShopItem(shopItem)
+        viewModelScope.launch(Dispatchers.IO) {
+            addShopItemUseCase.addShopItem(shopItem)
+        }
     }
 
     fun deleteShopItem(shopItem: ShopItem) {
-        deleteShopItemUseCase.deleteShopItem(shopItem)
+        viewModelScope.launch(Dispatchers.IO) {
+            deleteShopItemUseCase.deleteShopItem(shopItem)
+        }
     }
 
     fun editShopItem(shopItem: ShopItem) {
-        val newItem = with(shopItem) { copy(enabled = !enabled) }
-        editShopItemUseCase.editShopItem(newItem)
+        viewModelScope.launch(Dispatchers.IO) {
+            val newItem = with(shopItem) { copy(enabled = !enabled) }
+            editShopItemUseCase.editShopItem(newItem)
+        }
     }
 
-    fun getShopItem(shopItem: Int): ShopItem {
-        return getShopItemUseCase.getShopItem(shopItem)
+    fun getShopItem(shopItem: Int): ShopItem? {
+        var data: ShopItem? = null
+        viewModelScope.launch(Dispatchers.IO) {
+            data = getShopItemUseCase.getShopItem(shopItem)
+
+        }
+        return data
     }
 }

@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         //edit ShopItem
         binding.btnEditShopItem.setOnClickListener {
             val text = viewModel.getShopItem(binding.editText.text.toString().toInt())
-            viewModel.editShopItem(text)
+            if (text != null) {
+                viewModel.editShopItem(text)
+            }
         }
         //delete ShopItem
         binding.btnDeleteShopItem.setOnClickListener {

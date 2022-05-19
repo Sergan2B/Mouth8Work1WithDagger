@@ -13,14 +13,14 @@ interface ShopItemDao {
     @Query("SELECT * FROM shop_item WHERE id = :id")
     fun getShopItem(id: Int)*/
 
-    @Insert(onConflict =OnConflictStrategy.REPLACE)
-    fun addShopItem(shopItemDBModel: ShopItemDBModel)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addShopItem(shopItemDBModel: ShopItemDBModel)
 
     @Delete
-    fun deleteShopItem(shopItemDBModel: ShopItemDBModel)
+    suspend fun deleteShopItem(shopItemDBModel: ShopItemDBModel)
 
     @Update
-    fun editShopItem(shopItemDBModel: ShopItemDBModel)
+    suspend fun editShopItem(shopItemDBModel: ShopItemDBModel)
 /*
     @Query("SELECT * FROM shop_item ORDER BY name ASC")
     fun sortShopItem(): LiveData<List<ShopItemDBModel>>*/
