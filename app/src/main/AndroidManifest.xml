@@ -23,7 +23,8 @@
         </activity>
         <activity
             android:name=".presentation.main.MainActivity"
-            android:exported="false" />
+            android:exported="false" >
+        </activity>
     </application>
 
 </manifest>

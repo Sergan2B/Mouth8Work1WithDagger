@@ -67,7 +67,7 @@ class TaskActivity : AppCompatActivity(R.layout.activity_task) {
             if (it.resultCode == RESULT_OK) {
                 val userText = it.data?.getStringExtra(USER_KEY)
                 if (userText != null) {
-                    viewModel.addShopItem(ShopItem(userText, 1, enabled = false))
+                        viewModel.addShopItem(ShopItem(userText, 1, enabled = false))
                 }
             }
         }

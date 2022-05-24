@@ -9,9 +9,6 @@ interface ShopItemDao {
 
     @Query("SELECT * FROM shop_item")
     fun getAll(): LiveData<List<ShopItemDBModel>>
-/*
-    @Query("SELECT * FROM shop_item WHERE id = :id")
-    fun getShopItem(id: Int)*/
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addShopItem(shopItemDBModel: ShopItemDBModel)
@@ -21,7 +18,4 @@ interface ShopItemDao {
 
     @Update
     suspend fun editShopItem(shopItemDBModel: ShopItemDBModel)
-/*
-    @Query("SELECT * FROM shop_item ORDER BY name ASC")
-    fun sortShopItem(): LiveData<List<ShopItemDBModel>>*/
 }
