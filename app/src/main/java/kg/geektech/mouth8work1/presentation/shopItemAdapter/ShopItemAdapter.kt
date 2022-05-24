@@ -3,6 +3,7 @@ package kg.geektech.mouth8work1.presentation.shopItemAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,11 +11,19 @@ import kg.geektech.mouth8work1.R
 import kg.geektech.mouth8work1.domain.model.ShopItem
 import kg.geektech.mouth8work1.presentation.shopItemAdapter.ShopItemAdapter.ViewHolder
 import kg.geektech.mouth8work1.utils.ShopItemDiffCallback
+import java.util.*
+import kotlin.collections.ArrayList
 
 
-class ShopItemAdapter : ListAdapter<ShopItem, ViewHolder>(ShopItemDiffCallback()) {
+class ShopItemAdapter(private var stringList: ArrayList<String>) :
+    ListAdapter<ShopItem, ViewHolder>(ShopItemDiffCallback()) {
     var onShopItemClickListener: ((ShopItem) -> Unit)? = null
     var onShopItemLongClickListener: ((ShopItem) -> Unit)? = null
+    var countryFilterList = ArrayList<String>()
+
+    init {
+        countryFilterList = stringList
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layout = when (viewType) {
@@ -46,6 +55,38 @@ class ShopItemAdapter : ListAdapter<ShopItem, ViewHolder>(ShopItemDiffCallback()
             VIEW_TYPE_ENABLE
         } else {
             VIEW_TYPE_DISABLE
+        }
+    }
+
+    override fun getItemCount() = countryFilterList.size
+
+    fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    countryFilterList = stringList
+                } else {
+                    val resultList = ArrayList<String>()
+                    for (row in stringList) {
+                        if (row.lowercase(Locale.ROOT)
+                                .contains(charSearch.lowercase(Locale.ROOT))
+                        ) {
+                            resultList.add(row)
+                        }
+                    }
+                    countryFilterList = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = countryFilterList
+                return filterResults
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                countryFilterList = results?.values as ArrayList<String>
+                notifyDataSetChanged()
+            }
         }
     }
 

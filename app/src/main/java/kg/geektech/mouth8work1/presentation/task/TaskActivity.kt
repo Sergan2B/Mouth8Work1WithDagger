@@ -2,6 +2,7 @@ package kg.geektech.mouth8work1.presentation.task
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.SearchView.OnQueryTextListener
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,7 @@ class TaskActivity : AppCompatActivity(R.layout.activity_task) {
         initLauncher()
         initViewModel()
         initRecyclerView()
+        initSearchView()
         initListeners()
         initObservers()
     }
@@ -51,12 +53,25 @@ class TaskActivity : AppCompatActivity(R.layout.activity_task) {
             launcher.launch(intent)
         }
     }
+    private fun initSearchView() {
+        binding.searchView.setOnQueryTextListener(object : OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.getFilter().filter(newText)
+                return false
+            }
+        })
+    }
 
     private fun initRecyclerView() {
-        adapter = ShopItemAdapter()
         binding.taskRecycler.adapter = adapter
         setUpSwipeListener()
     }
+
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
