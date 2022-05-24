@@ -61,7 +61,7 @@ class TaskActivity : AppCompatActivity(R.layout.activity_task) {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.getFilter().filter(newText)
+                adapter.filter.filter(newText)
                 return false
             }
         })

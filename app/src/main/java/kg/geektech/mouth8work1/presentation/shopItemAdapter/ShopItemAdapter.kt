@@ -1,9 +1,11 @@
 package kg.geektech.mouth8work1.presentation.shopItemAdapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
+import android.widget.Filterable
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +18,7 @@ import kotlin.collections.ArrayList
 
 
 class ShopItemAdapter(private var stringList: ArrayList<String>) :
-    ListAdapter<ShopItem, ViewHolder>(ShopItemDiffCallback()) {
+    ListAdapter<ShopItem, ViewHolder>(ShopItemDiffCallback()), Filterable {
     var onShopItemClickListener: ((ShopItem) -> Unit)? = null
     var onShopItemLongClickListener: ((ShopItem) -> Unit)? = null
     var countryFilterList = ArrayList<String>()
@@ -60,7 +62,7 @@ class ShopItemAdapter(private var stringList: ArrayList<String>) :
 
     override fun getItemCount() = countryFilterList.size
 
-    fun getFilter(): Filter {
+    override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
@@ -82,6 +84,7 @@ class ShopItemAdapter(private var stringList: ArrayList<String>) :
                 return filterResults
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 countryFilterList = results?.values as ArrayList<String>
