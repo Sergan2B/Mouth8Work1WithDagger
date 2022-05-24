@@ -1,6 +1,8 @@
 package kg.geektech.mouth8work1.domain.model
 
-data class ShopItem(
+import javax.inject.Inject
+
+data class ShopItem @Inject constructor(
     val name: String,
     val count: Int,
     var enabled: Boolean,

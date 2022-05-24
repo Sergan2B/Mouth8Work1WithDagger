@@ -13,7 +13,6 @@ class SecondTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySecondTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         initLauncherRealization()
     }
 

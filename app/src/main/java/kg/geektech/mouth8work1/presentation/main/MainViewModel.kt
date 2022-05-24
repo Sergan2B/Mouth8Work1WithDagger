@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
 
     private val repositoryImpl = ShopListRepositoryImpl()
-
     private val addShopItemUseCase = AddShopItemUseCase(repositoryImpl)
     private val deleteShopItemUseCase = DeleteShopItemUseCase(repositoryImpl)
     private val getShopListUseCase = GetShopListUseCase(repositoryImpl)
@@ -42,7 +41,6 @@ class MainViewModel : ViewModel() {
         var data: ShopItem? = null
         viewModelScope.launch(Dispatchers.IO) {
             data = getShopItemUseCase.getShopItem(shopItem)
-
         }
         return data
     }
